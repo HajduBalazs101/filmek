@@ -11,12 +11,12 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <StackPanel Orientation="Vertical" Grid.Column="0">
             <Button Content="Filmek betöltése" Width="120" Margin="10" Click="betolt"></Button>
             <Button Content="Hány film van?" Width="120" Margin="10" Click="hanyfilm"></Button>
             <Button Content="Leghosszabb film" Width="120" Margin="10" Click="leghosszabb"></Button>
+            <Button Content="Átlag értékelés" Width="120" Margin="10" Click="atlag"></Button>
         </StackPanel>
-        <DataGrid x:Name="dgrid" Grid.Column="1">
-        </DataGrid>
+        <DataGrid x:Name="dgrid" Grid.Column="1"/>
     </Grid>
 </Window>

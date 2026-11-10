@@ -25,25 +25,28 @@ namespace filmek
             Ertekeles = ertekeles;
         }
     }
+
     public partial class MainWindow : Window
     {
-        List<Film> filmek = new List<Film>()
-            {
-                new Film("Csillagok háborúja", "sci-fi", 121, 8.6),
-                new Film("Titanic", "dráma", 195, 7.8),
-                new Film("A Gyűrűk Ura", "fantasy", 201, 8.8),
-                new Film("Mátrix", "sci-fi", 136, 8.7),
-                new Film("Shrek", "animáció", 90, 7.9)
-            };
+        List<Film> filmek = new List<Film>();
+
+                
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void betolt(object sender, RoutedEventArgs e)
         {
-            
+            filmek.Clear();
+            filmek.Add(new Film("Csillagok háborúja", "sci-fi", 121, 8.6));
+            filmek.Add(new Film("Titanic", "dráma", 195, 7.8));
+            filmek.Add(new Film("A Gyűrűk Ura", "fantasy", 201, 8.8));
+            filmek.Add(new Film("Mátrix", "sci-fi", 136, 8.7));
+            filmek.Add(new Film("Shrek", "animáció", 90, 7.9));
             dgrid.ItemsSource = filmek;
+            dgrid.Items.Refresh();
         }
 
         private void hanyfilm(object sender, RoutedEventArgs e)
@@ -68,6 +71,20 @@ namespace filmek
             { 
             var hossz = filmek.OrderByDescending(f => f.Hossz).Take(1).ToList();
             dgrid.ItemsSource = hossz;
+            }
+        }
+
+        private void atlag(object sender, RoutedEventArgs e)
+        {
+            if(dgrid.ItemsSource == null)
+            {
+                MessageBox.Show("Nincs betöltve film lista!");
+
+            }
+            else 
+            { 
+                var atlag = filmek.Average(f => f.Ertekeles);
+                MessageBox.Show($"A filmek átlag értékelése: {atlag}");
             }
         }
     }
