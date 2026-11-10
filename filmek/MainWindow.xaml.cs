@@ -112,5 +112,16 @@ namespace filmek
             var rendezett = filmek.OrderBy(f => f.Cim).ToList();
             dgrid.ItemsSource = rendezett;
         }
+
+        private void dgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var ert = filmek.OrderByDescending(f => f.Hossz).Take(1).ToList();
+            var kivalasztott = (Film)dgrid.SelectedItem;
+            pbar.Minimum = 0;
+            pbar.Maximum = ert[0].Hossz;
+            pbar.Value = kivalasztott.Hossz;
+
+            MessageBox.Show($"Kiválasztott film: \n{kivalasztott.Cim} \nÉrtékelés: {kivalasztott.Ertekeles}");
+        }
     }
 }

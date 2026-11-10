@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:filmek"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="370" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -19,7 +19,8 @@
             <Button Content="Csak Sci-fi" Width="120" Margin="10" Click="scifi"></Button>
             <Button Content="Csak címek" Width="120" Margin="10" Click="cimek"></Button>
             <Button Content="Rendezés cím szerint" Width="120" Margin="10" Click="cimszerint"></Button>
+            <ProgressBar x:Name="pbar" Height="20" Width="100" Margin="20"/>
         </StackPanel>
-        <DataGrid x:Name="dgrid" Grid.Column="1"/>
+        <DataGrid x:Name="dgrid" Grid.Column="1" SelectionChanged="dgrid_SelectionChanged"/>
     </Grid>
 </Window>
