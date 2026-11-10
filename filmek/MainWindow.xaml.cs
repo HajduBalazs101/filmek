@@ -45,5 +45,17 @@ namespace filmek
             
             dgrid.ItemsSource = filmek;
         }
+
+        private void hanyfilm(object sender, RoutedEventArgs e)
+        {
+            if (dgrid.ItemsSource == null)
+            {
+                MessageBox.Show("Nincs betöltve film lista!");
+            }
+            else
+            { 
+                MessageBox.Show($"{filmek.Count()} db film van");
+            }
+        }
     }
 }
