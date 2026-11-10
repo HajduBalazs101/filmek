@@ -51,7 +51,7 @@ namespace filmek
 
         private void hanyfilm(object sender, RoutedEventArgs e)
         {
-            if (dgrid.ItemsSource == null)
+            if (!filmek.Any())
             {
                 MessageBox.Show("Nincs betöltve film lista!");
             }
@@ -63,7 +63,7 @@ namespace filmek
 
         private void leghosszabb(object sender, RoutedEventArgs e)
         {
-            if (dgrid.ItemsSource == null)
+            if (!filmek.Any())
             {
                 MessageBox.Show("Nincs betöltve film lista!");
             }
@@ -76,7 +76,7 @@ namespace filmek
 
         private void atlag(object sender, RoutedEventArgs e)
         {
-            if(dgrid.ItemsSource == null)
+            if(!filmek.Any())
             {
                 MessageBox.Show("Nincs betöltve film lista!");
 
@@ -90,41 +90,56 @@ namespace filmek
 
         private void scifi(object sender, RoutedEventArgs e)
         {
+            if (!filmek.Any())
+            {
+                MessageBox.Show("Nincs betöltve film lista!");
+            }
+            else
+            { 
             var scifik = filmek.Where(f => f.Mufaj == "sci-fi").ToList();
             dgrid.ItemsSource = scifik;
+            }
         }
 
         private void cimek(object sender, RoutedEventArgs e)
         {
-            if (dgrid.ItemsSource == null)
+            if (!filmek.Any())
             {
                 MessageBox.Show("Nincs betöltve film lista!");
             }
             else
             { 
             var cimek = filmek.Select(f => f.Cim).ToList();
-            MessageBox.Show($"Könyvek címei: {string.Join(", ", cimek)}");
+            MessageBox.Show($"Filmek címei: {string.Join(", ", cimek)}");
             }
         }
 
         private void cimszerint(object sender, RoutedEventArgs e)
         {
-            var rendezett = filmek.OrderBy(f => f.Cim).ToList();
-            dgrid.ItemsSource = rendezett;
+            if (!filmek.Any())
+            {
+                MessageBox.Show("Nincs betöltve film lista!");
+
+            }
+            else
+            {
+                var rendezett = filmek.OrderBy(f => f.Cim).ToList();
+                dgrid.ItemsSource = rendezett;
+            }
         }
+            
+      
 
         private void dgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            var kivalasztott = (Film)dgrid.SelectedItem;
-            pbar.Minimum = 0;
-            pbar.Maximum = filmek.Max(f => f.Hossz);
-
-            if(dgrid.SelectedItem != null && dgrid.SelectedItem is Film)
+            if (dgrid.SelectedItem is Film kivalasztott && filmek.Any())
             {
+                pbar.Minimum = 0;
+                pbar.Maximum = filmek.Max(f => f.Hossz);
                 pbar.Value = kivalasztott.Hossz;
+
+                MessageBox.Show($"Kiválasztott film: \n{kivalasztott.Cim} \nÉrtékelés: {kivalasztott.Ertekeles}");
             }
-            MessageBox.Show($"Kiválasztott film: \n{kivalasztott.Cim} \nÉrtékelés: {kivalasztott.Ertekeles}");
         }
     }
 }
