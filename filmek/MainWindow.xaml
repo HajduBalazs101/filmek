@@ -16,6 +16,9 @@
             <Button Content="Hány film van?" Width="120" Margin="10" Click="hanyfilm"></Button>
             <Button Content="Leghosszabb film" Width="120" Margin="10" Click="leghosszabb"></Button>
             <Button Content="Átlag értékelés" Width="120" Margin="10" Click="atlag"></Button>
+            <Button Content="Csak Sci-fi" Width="120" Margin="10" Click="scifi"></Button>
+            <Button Content="Csak címek" Width="120" Margin="10" Click="cimek"></Button>
+            <Button Content="Rendezés cím szerint" Width="120" Margin="10" Click="cimszerint"></Button>
         </StackPanel>
         <DataGrid x:Name="dgrid" Grid.Column="1"/>
     </Grid>

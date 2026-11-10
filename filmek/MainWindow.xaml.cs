@@ -87,5 +87,30 @@ namespace filmek
                 MessageBox.Show($"A filmek átlag értékelése: {atlag}");
             }
         }
+
+        private void scifi(object sender, RoutedEventArgs e)
+        {
+            var scifik = filmek.Where(f => f.Mufaj == "sci-fi").ToList();
+            dgrid.ItemsSource = scifik;
+        }
+
+        private void cimek(object sender, RoutedEventArgs e)
+        {
+            if (dgrid.ItemsSource == null)
+            {
+                MessageBox.Show("Nincs betöltve film lista!");
+            }
+            else
+            { 
+            var cimek = filmek.Select(f => f.Cim).ToList();
+            MessageBox.Show($"Könyvek címei: {string.Join(", ", cimek)}");
+            }
+        }
+
+        private void cimszerint(object sender, RoutedEventArgs e)
+        {
+            var rendezett = filmek.OrderBy(f => f.Cim).ToList();
+            dgrid.ItemsSource = rendezett;
+        }
     }
 }
