@@ -55,6 +55,19 @@ namespace filmek
             else
             { 
                 MessageBox.Show($"{filmek.Count()} db film van");
+            }   
+        }
+
+        private void leghosszabb(object sender, RoutedEventArgs e)
+        {
+            if (dgrid.ItemsSource == null)
+            {
+                MessageBox.Show("Nincs betöltve film lista!");
+            }
+            else
+            { 
+            var hossz = filmek.OrderByDescending(f => f.Hossz).Take(1).ToList();
+            dgrid.ItemsSource = hossz;
             }
         }
     }
